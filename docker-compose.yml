@@ -1,0 +1,64 @@
+version: "3"
+services: 
+  management_node:
+    image: irusha/mysql-cluster:latest
+    command: ndb_mgmd
+    networks: 
+      clusternet:
+        ipv4_address: 172.30.0.2
+  data_node1:
+    image: irusha/mysql-cluster:latest
+    command: ndbd
+    networks: 
+      clusternet:
+        ipv4_address: 172.30.0.3
+    depends_on: 
+      - management_node
+  data_node2:
+    image: irusha/mysql-cluster:latest
+    command: ndbd
+    networks: 
+      clusternet:
+        ipv4_address: 172.30.0.4
+    depends_on: 
+      - management_node
+  data_node3:
+    image: irusha/mysql-cluster:latest
+    command: ndbd
+    networks: 
+      clusternet:
+        ipv4_address: 172.30.0.5   
+    depends_on: 
+      - management_node
+  mysql_api1:
+    image: irusha/mysql-cluster:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: "asd@admin"
+    command: mysqld
+    networks: 
+      clusternet:
+        ipv4_address: 172.30.0.100
+    depends_on: 
+      - management_node
+      - data_node1
+      - data_node2
+      - data_node3
+  mysql_api2:
+    image: irusha/mysql-cluster:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: "asd@admin"
+    command: mysqld
+    networks: 
+      clusternet:
+        ipv4_address: 172.30.0.101
+    depends_on: 
+      - management_node
+      - data_node1
+      - data_node2
+      - data_node3     
+networks: 
+  clusternet:
+    ipam: 
+      driver: default
+      config: 
+        - subnet: 172.30.0.0/16
