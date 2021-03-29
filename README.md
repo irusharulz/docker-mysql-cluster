@@ -47,10 +47,3 @@ Port: 3307
 Username: irusha
 Password: asd@admin   
 ```
-
-
-
-
-
-
-
