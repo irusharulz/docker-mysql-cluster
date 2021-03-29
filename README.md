@@ -5,13 +5,13 @@
 
 ## How to run problem solution
 
-> Before going to execute below, please check whether you have installed docker & docker-compose in your machine.
+> Before going to run, please check whether you have installed docker & docker-compose in your machine.
 
 ``` 
 git clone https://github.com/irusharulz/docker-mysql-cluster.git 
 ```
 
-> After that locate to docker-mysql directory by using below command
+> After that locate to docker-mysql-cluster directory by using below command
 
 ``` 
 cd docker-mysql-cluster/ 
