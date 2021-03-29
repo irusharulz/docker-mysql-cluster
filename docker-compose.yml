@@ -35,6 +35,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "asd@admin"
     command: mysqld
+    ports: 
+      - 3306:3306
     networks: 
       clusternet:
         ipv4_address: 172.30.0.100
@@ -48,6 +50,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "asd@admin"
     command: mysqld
+    ports: 
+      - 3307:3306
     networks: 
       clusternet:
         ipv4_address: 172.30.0.101
@@ -61,4 +65,4 @@ networks:
     ipam: 
       driver: default
       config: 
-        - subnet: 172.30.0.0/16
+        - subnet: 172.30.0.0/16 
